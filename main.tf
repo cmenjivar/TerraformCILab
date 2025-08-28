@@ -15,8 +15,8 @@ terraform {
 }
 
 provider "azurerm" {
-  features {}                       #empty features block
-  skip_provider_registration = true #environment with limited permissions
+  features {}                       #empty features block.
+  skip_provider_registration = true #environment with limited permissions.
 }
 
 # Generates a random suffix
