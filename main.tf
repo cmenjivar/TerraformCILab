@@ -29,7 +29,7 @@ resource "azurerm_resource_group" "rg" {
   location = "West US"
 }
 
-# Register Azure subscription to use the Microsoft.Storage resource provider
+# Register Azure subscription to use the Microsoft.Storage resource provider.
 resource "azurerm_resource_provider_registration" "storage" {
   name = "Microsoft.Storage"
 }
@@ -44,6 +44,5 @@ resource "azurerm_storage_account" "storage" {
   # Update your storage account resource to depend on the registration
   depends_on = [
     azurerm_resource_provider_registration.storage
-  ]
-  
+  ]  
 }
