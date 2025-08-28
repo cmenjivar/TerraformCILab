@@ -45,4 +45,5 @@ resource "azurerm_storage_account" "storage" {
   depends_on = [
     azurerm_resource_provider_registration.storage
   ]
+  
 }
