@@ -47,7 +47,7 @@ resource "azurerm_storage_account" "storage" {
   account_replication_type = "RAGRS"
 
   # Update your storage account resource to depend on the registration.
-  depends_on = [
-    azurerm_resource_provider_registration.storage
-  ]
+  # depends_on = [
+  #   azurerm_resource_provider_registration.storage
+  # ]
 }
