@@ -30,9 +30,14 @@ resource "azurerm_resource_group" "rg" {
 }
 
 # Register Azure subscription to use the Microsoft.Storage resource provider.
-resource "azurerm_resource_provider_registration" "storage" {
-  name = "Microsoft.Storage"
-}
+# resource "azurerm_resource_provider_registration" "storage" {
+#   name = "Microsoft.Storage"
+# }
+# need Terraform to track the provider registration in its state (e.g., in a strict environment where you must track all dependencies)
+# import {
+#   to = azurerm_resource_provider_registration.storage
+#   id = "/subscriptions/00f53b88-6508-45fc-b455-21f8be00190f/providers/Microsoft.Storage"
+# }
 
 resource "azurerm_storage_account" "storage" {
   name                     = "stmenjivartest${random_id.suffix.hex}"
