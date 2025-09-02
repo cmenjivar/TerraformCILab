@@ -39,15 +39,25 @@ resource "azurerm_resource_group" "rg" {
 #   id = "/subscriptions/00f53b88-6508-45fc-b455-21f8be00190f/providers/Microsoft.Storage"
 # }
 
-resource "azurerm_storage_account" "storage" {
-  name                     = "stmenjivartest${random_id.suffix.hex}"
-  location                 = azurerm_resource_group.rg.location
-  resource_group_name      = azurerm_resource_group.rg.name
-  account_tier             = "Standard"
-  account_replication_type = "RAGRS"
+# resource "azurerm_storage_account" "storage" {
+#   name                     = "stmenjivartest${random_id.suffix.hex}"
+#   location                 = azurerm_resource_group.rg.location
+#   resource_group_name      = azurerm_resource_group.rg.name
+#   account_tier             = "Standard"
+#   account_replication_type = "RAGRS"
 
-  # Update your storage account resource to depend on the registration.
-  # depends_on = [
-  #   azurerm_resource_provider_registration.storage
-  # ]
+#   # Update your storage account resource to depend on the registration.
+#   # depends_on = [
+#   #   azurerm_resource_provider_registration.storage
+#   # ]
+# }
+
+module "securestorage" {
+  source  = "app.terraform.io/CARLOS-training/securestorage/azurerm"
+  version = "1.0.0"
+
+  resource_group_name  = azurerm_resource_group.rg.name
+  location             = azurerm_resource_group.rg.location
+  environment          = "dev"
+  storage_account_name = "stmenjivartest${random_id.suffix.hex}"
 }
